@@ -7,6 +7,19 @@ const User = require('../../models/User');
 // Auth middleware
 const { auth } = require('../../middleware/auth');
 
+// @route   POST api/users/auth
+// @desc    Route if token is valid, checking in react is User is authenticated
+// @access  Private
+router.get('/auth', auth, (req, res) => {
+  res.json({
+    isAuth: true,
+    id: req.user._id,
+    email: req.user.email,
+    name: req.user.name,
+    lastname: req.user.lastname
+  });
+});
+
 // @route   POST api/users/register
 // @desc    Register a user
 // @access  Public
