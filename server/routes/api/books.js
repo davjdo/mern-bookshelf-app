@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-// Load Book Model
+// Load Models
 const Book = require('../../models/Book');
+const User = require('../../models/User');
 
 // @route   GET api/books?skip=3&limit=2&order=asc
 // @desc    Get books
@@ -56,6 +57,31 @@ router.post('/edit_book', (req, res) => {
       success: true,
       doc
     });
+  });
+});
+
+// @route   GET api/books/book_reviewer/:id
+// @desc    GET a book_reviewer by id
+// @access  Public
+router.get('/book_reviewer/:id', (req, res) => {
+  let id = req.params.id;
+  User.findById(id, (err, doc) => {
+    if (err) return res.status(400).send(err);
+    res.json({
+      name: doc.name,
+      lastname: doc.lastname
+    });
+  });
+});
+
+// @route   GET api/books/user_book/:id
+// @desc    GET books related to a owner_id
+// @access  Private
+router.get('/user_book/:id', (req, res) => {
+  let id = req.params.id;
+  Book.find({ ownerId: id }).exec((err, docs) => {
+    if (err) return res.status(400).send(err);
+    res.send(docs);
   });
 });
 
