@@ -4,6 +4,9 @@ const router = express.Router();
 // Load User Model
 const User = require('../../models/User');
 
+// Auth middleware
+const { auth } = require('../../middleware/auth');
+
 // @route   POST api/users/register
 // @desc    Register a user
 // @access  Public
@@ -43,6 +46,16 @@ router.post('/login', (req, res) => {
         });
       });
     });
+  });
+});
+
+// @route   GET api/users/logout
+// @desc    Logout a user with auth middleware
+// @access  Private
+router.get('/logout', auth, (req, res) => {
+  req.user.deleteToken(req.token, (err, user) => {
+    if (err) return res.status(400).send(err);
+    res.sendStatus(200);
   });
 });
 
