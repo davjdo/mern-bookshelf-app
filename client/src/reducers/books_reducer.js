@@ -1,4 +1,8 @@
-import { GET_BOOKS } from '../actions/types';
+import {
+  GET_BOOKS,
+  GET_BOOK_WITH_REVIEWER,
+  CLEAR_BOOK_WITH_REVIEWER
+} from '../actions/types';
 
 export default function(state = {}, action) {
   switch (action.type) {
@@ -6,6 +10,18 @@ export default function(state = {}, action) {
       return {
         ...state,
         list: action.payload
+      };
+    case GET_BOOK_WITH_REVIEWER:
+      return {
+        ...state,
+        book: action.payload.book,
+        reviewer: action.payload.reviewer
+      };
+    case CLEAR_BOOK_WITH_REVIEWER:
+      return {
+        ...state,
+        book: action.payload.book,
+        reviewer: action.payload.reviewer
       };
     default:
       return state;
