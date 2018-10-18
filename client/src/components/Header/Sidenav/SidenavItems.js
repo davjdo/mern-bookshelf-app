@@ -35,14 +35,14 @@ const SidenavItems = () => {
     {
       type: 'navItem',
       icon: 'file-text-o',
-      text: 'My reviews',
-      link: '/user/user-reviews',
+      text: 'My books',
+      link: '/user/user-books',
       restricted: true
     },
     {
       type: 'navItem',
       icon: 'file-text-o',
-      text: 'Add a review',
+      text: 'Add a book',
       link: '/user/add',
       restricted: true
     },

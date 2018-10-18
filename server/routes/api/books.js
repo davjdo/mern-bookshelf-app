@@ -74,10 +74,10 @@ router.get('/book_reviewer/:id', (req, res) => {
   });
 });
 
-// @route   GET api/books/user_book/:id
+// @route   GET api/books/user_books/:id
 // @desc    GET books related to a owner_id
 // @access  Private
-router.get('/user_book/:id', (req, res) => {
+router.get('/user_books/:id', (req, res) => {
   let id = req.params.id;
   Book.find({ ownerId: id }).exec((err, docs) => {
     if (err) return res.status(400).send(err);

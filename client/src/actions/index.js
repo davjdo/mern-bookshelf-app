@@ -6,7 +6,8 @@ import {
   USER_LOGIN,
   AUTH,
   ADD_BOOK,
-  CLEAR_NEW_BOOK
+  CLEAR_NEW_BOOK,
+  GET_USER_BOOKS
 } from './types';
 
 export const getBooks = async (
@@ -73,6 +74,16 @@ export const clearNewBook = () => {
   return {
     type: CLEAR_NEW_BOOK,
     payload: {}
+  };
+};
+
+export const getUserBooks = userId => {
+  const request = axios
+    .get(`/api/books/user_books/${userId}`)
+    .then(response => response.data);
+  return {
+    type: GET_USER_BOOKS,
+    payload: request
   };
 };
 

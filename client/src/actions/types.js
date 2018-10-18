@@ -5,3 +5,4 @@ export const USER_LOGIN = 'USER_LOGIN';
 export const AUTH = 'AUTH';
 export const ADD_BOOK = 'ADD_BOOK';
 export const CLEAR_NEW_BOOK = 'CLEAR_NEW_BOOK';
+export const GET_USER_BOOKS = 'GET_USER_BOOKS';
