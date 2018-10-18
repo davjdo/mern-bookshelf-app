@@ -3,7 +3,8 @@ import {
   GET_BOOKS,
   GET_BOOK_WITH_REVIEWER,
   CLEAR_BOOK_WITH_REVIEWER,
-  USER_LOGIN
+  USER_LOGIN,
+  AUTH
 } from './types';
 
 export const getBooks = async (
@@ -57,6 +58,14 @@ export const clearBookWithReviewer = () => {
 };
 
 // USER ACTIONS
+
+export const auth = () => {
+  const request = axios.get('/api/users/auth').then(response => response.data);
+  return {
+    type: AUTH,
+    payload: request
+  };
+};
 
 export const loginUser = ({ email, password }) => {
   const request = axios
