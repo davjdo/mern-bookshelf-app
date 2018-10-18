@@ -150,14 +150,15 @@ header .navItem span {
 }
 
 .rl_container.article textarea {
-  background: #f7f7f7;
-  border: 1px solid #ebebeb;
-  border-radius: 3px;
   width: 80%;
-  padding: 20px;
-  box-sizing: border-box;
   margin-top: 20px;
-  font-size: 14px;
+  font-size: 20px;
+  border-radius: 3px;
+  border: 1px solid #ebebeb;
+  box-sizing: border-box;
+  padding: 11px 31px;
+  background: #f7f7f7;
+  font-weight: 300;
 }
 .rl_container.article select {
   width: 80%;

@@ -4,7 +4,9 @@ import {
   GET_BOOK_WITH_REVIEWER,
   CLEAR_BOOK_WITH_REVIEWER,
   USER_LOGIN,
-  AUTH
+  AUTH,
+  ADD_BOOK,
+  CLEAR_NEW_BOOK
 } from './types';
 
 export const getBooks = async (
@@ -54,6 +56,23 @@ export const clearBookWithReviewer = () => {
       book: {},
       reviewer: {}
     }
+  };
+};
+
+export const addBook = newBook => {
+  const request = axios
+    .post('/api/books', newBook)
+    .then(response => response.data);
+  return {
+    type: ADD_BOOK,
+    payload: request
+  };
+};
+
+export const clearNewBook = () => {
+  return {
+    type: CLEAR_NEW_BOOK,
+    payload: {}
   };
 };
 

@@ -6,12 +6,14 @@ import Home from './components/Home';
 import BookView from './components/Books';
 import Login from './containers/Admin/Login';
 import User from './components/User';
+import AddBook from './containers/Admin/AddBook';
 
 const Routes = () => {
   return (
     <div>
       <Layout>
         <Switch>
+          <Route path="/user/add" exact component={Auth(AddBook, true)} />
           <Route path="/user" exact component={Auth(User, true)} />
           <Route path="/login" exact component={Auth(Login, false)} />
           <Route path="/books/:id" exact component={Auth(BookView, null)} />
