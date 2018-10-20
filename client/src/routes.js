@@ -8,12 +8,18 @@ import Login from './containers/Admin/Login';
 import User from './components/User';
 import AddBook from './containers/Admin/AddBook';
 import UserBooks from './containers/Admin/UserBooks';
+import EditBooks from './containers/Admin/EditBook';
 
 const Routes = () => {
   return (
     <div>
       <Layout>
         <Switch>
+          <Route
+            path="/user/edit-book/:id"
+            exact
+            component={Auth(EditBooks, true)}
+          />
           <Route
             path="/user/user-books"
             exact

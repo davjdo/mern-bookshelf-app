@@ -7,8 +7,20 @@ import {
   AUTH,
   ADD_BOOK,
   CLEAR_NEW_BOOK,
-  GET_USER_BOOKS
+  GET_USER_BOOKS,
+  GET_BOOK,
+  UPDATE_BOOK,
+  DELETE_BOOK,
+  CLEAR_BOOK
 } from './types';
+
+export const getBook = id => {
+  const request = axios.get(`/api/books/${id}`).then(response => response.data);
+  return {
+    type: GET_BOOK,
+    payload: request
+  };
+};
 
 export const getBooks = async (
   limit = 10,
@@ -84,6 +96,37 @@ export const getUserBooks = userId => {
   return {
     type: GET_USER_BOOKS,
     payload: request
+  };
+};
+
+export const updateBook = data => {
+  const request = axios
+    .post('/api/books/book_update', data)
+    .then(response => response.data);
+  return {
+    type: UPDATE_BOOK,
+    payload: request
+  };
+};
+
+export const deleteBook = id => {
+  const request = axios
+    .delete(`/api/books/${id}`)
+    .then(response => response.data);
+  return {
+    type: DELETE_BOOK,
+    payload: request
+  };
+};
+
+export const clearBook = () => {
+  return {
+    type: CLEAR_BOOK,
+    payload: {
+      book: null,
+      updateBook: false,
+      postDeleted: false
+    }
   };
 };
 

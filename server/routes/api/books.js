@@ -47,10 +47,10 @@ router.post('/', (req, res) => {
   });
 });
 
-// @route   POST api/books/edit_book/
+// @route   POST api/books/book_update/
 // @desc    Edit a book
 // @access  Private
-router.post('/edit_book', (req, res) => {
+router.post('/book_update', (req, res) => {
   Book.findByIdAndUpdate(req.body._id, req.body, { new: true }, (err, doc) => {
     if (err) return res.status(400).send(err);
     res.json({
