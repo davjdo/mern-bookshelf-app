@@ -11,7 +11,9 @@ import {
   GET_BOOK,
   UPDATE_BOOK,
   DELETE_BOOK,
-  CLEAR_BOOK
+  CLEAR_BOOK,
+  GET_USERS,
+  USER_REGISTER
 } from './types';
 
 export const getBook = id => {
@@ -147,5 +149,30 @@ export const loginUser = ({ email, password }) => {
   return {
     type: USER_LOGIN,
     payload: request
+  };
+};
+
+export const getUsers = () => {
+  const request = axios.get('/api/users').then(response => response.data);
+  return {
+    type: GET_USERS,
+    payload: request
+  };
+};
+
+export const userRegister = (user, userList) => {
+  const request = axios.post('/api/users/register', user);
+  return dispatch => {
+    request.then(({ data }) => {
+      let users = data.success ? [...userList, data.user] : userList;
+      let response = {
+        success: data.success,
+        users
+      };
+      dispatch({
+        type: USER_REGISTER,
+        payload: response
+      });
+    });
   };
 };
