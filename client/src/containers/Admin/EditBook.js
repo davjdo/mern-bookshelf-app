@@ -20,30 +20,36 @@ class EditBook extends PureComponent {
     this.props.getBook(this.props.match.params.id);
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   let book = nextProps.books.book;
-  //   let newFormdata = { ...this.state.formdata };
-  //   for (let key in newFormdata) {
-  //     newFormdata[key] = book[key];
-  //   }
-  //   this.setState({
-  //     formdata: newFormdata
-  //   });
-  // }
-
-  static getDerivedStateFromProps(nextProps, state) {
-    if (nextProps.books.book) {
-      let book = nextProps.books.book;
-      let newFormdata = { ...state.formdata };
-      for (let key in newFormdata) {
-        newFormdata[key] = book[key];
-      }
-      return {
-        formdata: newFormdata
-      };
+  componentWillReceiveProps(nextProps) {
+    let book = nextProps.books.book;
+    let newFormdata = { ...this.state.formdata };
+    for (let key in newFormdata) {
+      newFormdata[key] = book[key];
     }
-    return null;
+    this.setState({
+      formdata: newFormdata
+    });
   }
+
+  // static getDerivedStateFromProps(nextProps) {
+  //   if (nextProps.books.book) {
+  //     let book = nextProps.books.book;
+  //     if (book) {
+  //       return {
+  //         formdata: {
+  //           _id: book._id,
+  //           name: book.name,
+  //           author: book.author,
+  //           review: book.review,
+  //           pages: book.pages,
+  //           rating: book.rating,
+  //           price: book.price
+  //         }
+  //       };
+  //     }
+  //   }
+  //   return null;
+  // }
 
   componentWillUnmount() {
     this.props.clearBook();

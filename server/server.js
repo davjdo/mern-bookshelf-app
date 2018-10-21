@@ -26,10 +26,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors());
+app.use(express.static('client/build'));
 
 // Use routes
 app.use('/api/users', users);
 app.use('/api/books', books);
+
+// Server static assets if in production
+if (process.env.NODE_ENV === 'production') {
+  const path = require('path');
+  app.get('/*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+  });
+}
 
 // Express server running
 const port = process.env.PORT || 3001;
