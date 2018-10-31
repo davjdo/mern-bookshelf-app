@@ -21,19 +21,22 @@ class EditBook extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    let book = nextProps.books.book;
-    let newFormdata = { ...this.state.formdata };
-    for (let key in newFormdata) {
-      newFormdata[key] = book[key];
+    if (nextProps.books !== this.props.books) {
+      let book = nextProps.books.book;
+      let newFormdata = { ...this.state.formdata };
+      for (let key in newFormdata) {
+        newFormdata[key] = book[key];
+      }
+      this.setState({
+        formdata: newFormdata
+      });
     }
-    this.setState({
-      formdata: newFormdata
-    });
   }
 
-  // static getDerivedStateFromProps(nextProps) {
-  //   if (nextProps.books.book) {
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  //   if (nextProps.books.book !== prevState.formdata) {
   //     let book = nextProps.books.book;
+  //     console.log(nextProps);
   //     if (book) {
   //       return {
   //         formdata: {

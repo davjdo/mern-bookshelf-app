@@ -6,7 +6,6 @@ const Layout = props => {
     <div>
       <Header />
       <div>{props.children}</div>
-      FOOTER
     </div>
   );
 };
